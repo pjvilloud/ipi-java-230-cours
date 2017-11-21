@@ -1,0 +1,1223 @@
+<!doctype html>
+
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>IPI - Cours de Java - module 230</title>
+    
+    <meta name="description" content="" />
+    <meta name="author" content="Pierre-Julien VILLOUD" />
+
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/idea.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+    
+</head>
+
+<body class="impress-not-supported">
+
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="my-navbar">
+  <a class="navbar-brand" href="index.html">
+    <img src="img/ipi.jpg" width="30" height="30" alt=""> Cours Java 230
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="nav nav-pills mr-auto">
+      
+    </ul>
+    <span class="navbar-text">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="btn btn-primary" href="https://github.com/pjvilloud/ipi-java-230-ex" target="_blank"><i class="fa fa-icon fa-gamepad"></i></a>
+            &nbsp;
+            <a class="btn btn-primary" href="mailto:pjvilloud@protonmail.com"><i class="fa fa-icon fa-envelope"></i></a>
+            &nbsp;
+            <a class="btn btn-primary" href="https://github.com/pjvilloud" target="_blank"><i class="fa fa-icon fa-github"></i></a>
+            &nbsp;
+            <a class="btn btn-primary" href="https://linkedin.com/pjvilloud" target="_blank"><i class="fa fa-icon fa-linkedin"></i></a>&nbsp;
+            <a class="btn btn-primary" href="#" id="numSlide">1</a>
+        </div>
+    </span>
+  </div>
+</nav>
+<div class="progress">
+  <div id="progress" class="progress-bar" style="width: 0%;" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<div class="container-fluid" id="impress">
+
+    <div id="accueil" class="step slide" data-rel-x="0" data-y=0>
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container text-center">
+            <h1 class="display-3">Bienvenue !</h1>
+            <p class="lead">
+                <h2>Pierre-Julien VILLOUD</h2>
+                <div class="big-top-margin">
+                    <img src="img/pjvilloud.jpg" class="img-bienvenue rounded mx-auto d-block" alt="Pierre-Julien VILLOUD">
+                </div>
+                <div class="big-top-margin">
+                    <h3><i class="fa fa-icon fa-envelope-square"></i>&nbsp;<a href="mailto:pjvilloud@protonmail.com">pjvilloud@protonmail.com</a></h3>
+                    <h3><i class="fa fa-icon fa-github-square"></i>&nbsp;<a href="https://github.com/pjvilloud" target="_blank">https://github.com/pjvilloud</a></h3>
+                    <h3><i class="fa fa-icon fa-linkedin-square"></i>&nbsp;<a href="https://linkedin.com/pjvilloud" target="_blank">https://linkedin.com/pjvilloud</a></h3>
+                    <h3><i class="fa fa-icon fa-globe"></i>&nbsp;<a href="http://pjvilloud.github.io" target="_blank">http://pjvilloud.github.io</a></h3>
+                </div>
+            </p>
+          </div>
+        </div>
+    </div>
+
+    <div id="introduction" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Introduction</h1>
+          <div class="container-fluid">
+            <div class="alert alert-warning small-font" role="alert">
+                <i class="fa fa-icon fa-exclamation-triangle"></i>&nbsp;Les cours <a href="https://pjvilloud.github.io/ipi-java-210-cours/index.html">Java 210</a> et <a href="https://pjvilloud.github.io/ipi-java-220-cours/index.html">Java 220</a> sont des pré-requis à ce cours.
+            </div>
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Le principe de <strong>persistence</strong> décrit le fait de pouvoir stocker sur un support durable les données manipulées par une application et ainsi :
+            </div>
+          </div>
+          <div class="container">
+            <div>
+              <ul class="list-group little-top-margin small-font">
+                <li class="list-group-item">Eviter que les données disparaissent lorsque le programme se termine</li>
+                <li class="list-group-item">Communiquer par l'intermédiaire des données avec d'autres applications</li>
+              </ul>
+            </div>
+            <div class="little-top-margin"><img src="img/persistence.png" alt=""></div>
+          </div>
+          <div class="container-fluid">
+            <div class="little-top-margin alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Nous allons ici parler de persistence dans une base de données relationnelle de type SQL.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="jdbc" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">JDBC</h1>
+          <div class="container-fluid">
+            <div class="little-top-margin alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;<strong>JDBC</strong> (pour Java DataBase Connectivity) est le standard proposé nativement par Java pour accéder aux base de données. Il permet depuis une application Java de se connecter à un SGBD afin d'envoyer des requêtes SQL et récupérer les données éventuellement retournées.</li>
+            </ul>
+            </div>
+          </div>
+          <div class="container small-font">
+            <img src="img/jdbc.png" alt="">
+          </div>
+          <div class="container-fluid little-top-margin">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Chaque SGBD étant différent, il est nécessaire d'utiliser un <strong>driver</strong> implémentant le standard pour se connecter à tel ou tel SGBD. Tous les SGBD majeurs proposent un driver JDBC.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="jdbc-connexion" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Se connecter à une BDD</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Pour se connecter à la BDD avec JDBC, on doit créer un objet <code>Connection</code> en lui fournissant les informations nécessaires à la connexion.
+            </div>
+          </div>
+          <div class="container small-font text-left">
+            <pre><code class="java"><span data-toggle="popover" data-offset="0" data-trigger="hover click" data-placement="left" data-html="true" data-content="L'URL de connexion est dans un format un peu particulier : <code>jdbc:SGBD://host:port/base</code>">String url = "jdbc:mysql://localhost:3306/mabase";</span>
+String user = "root"; String pwd = "root";
+java.sql.Connection connexion = null;
+try {
+    connexion = java.sql.DriverManager.getConnection(url, user, pwd);
+} catch ( java.sql.SQLException e ) {
+    //Problème de connexion à la base !
+}
+//L'object connexion va nous permettre d'effectuer des requêtes...
+...
+//Lorsqu'on a fini de l'utiliser : 
+if(connexion != null {
+  try {
+    connexion.close();
+  }
+  catch ( java.sql.SQLException e ) {
+    //Problème de déconnexion, ce n'est pas très grave...
+  }
+}</code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;En fonction de l'URL passée, JDBC décide quel driver il doit charger (ici MySQL). Pour qu'il puisse y accéder, il est nécessaire de l'ajouter au classpath ou d'utiliser un gestionnaire de dépendance (ex : Maven).
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="jdbc-statementselect" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Exécuter une requête <code>SELECT</code></h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;A partir de l'objet <code>Connection</code>, on va créer un objet de type <code>Statement</code> pour créer une requête, puis un objet <code>ResultSet</code> pour traiter les résultats. 
+            </div>
+          </div>
+          <div class="container small-font text-left">
+            <pre><code class="java">//La variable de type Statement permettra de gérer des requêtes SQL
+Statement statement = connexion.createStatement();
+
+//La variable de type ResultSet contiendra les résultats de la requêtes
+String query = "SELECT id, marque, modele, date_mise_circulation FROM vehicule";
+ResultSet resultSet = statement.executeQuery(query);
+
+//On parcours un à un les résultats grâche à next() qui renvoie un booléen
+//précisant s'il y a une ligne suivante dans nos résultats et récupère ce 
+//résultat le cas échéant (au début, son curseur est situé avant le premier élément).
+while(resultSet.next()){
+  System.out.println("Identifiant : " + resultSet.getInt("id");
+  System.out.println("Marque : " + resultSet.getString("marque");
+  System.out.println("Modèle : " + resultSet.getString(3);
+  System.out.println("Date MC : " + resultSet.getDate("date_mise_circulation");
+  System.out.println("? : " + resultSet.getBoolean("inconnu");//SQLException
+}
+
+</code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Toutes les méthodes présentées ci-dessus lèvent potentiellement une exception. Il est donc nécessaire de les mettre à l'intérieur de <code>try catch</code> ou de propager l'exception avec un <code>throws</code> au niveau de la méthode.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="jdbc-statementupdate" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Exécuter une requête <code>UPDATE</code>, <code>DELETE</code> ou <code>INSERT</code></h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;La syntaxe est différente puisqu'il n'y a pas de notion de <em>résultat</em> pour ces requêtes. On utilise la méthode <code>executeUpdate()</code>.
+            </div>
+          </div>
+          <div class="container small-font text-left big-top-margin">
+            <pre><code class="java">Statement statement = connexion.createStatement();
+
+String query = "INSERT INTO vehicule(marque, modele) VALUES ('Peugeot', '208')";
+int status = statement.executeUpdate(query);//nombre de lignes insérées
+
+query = "DELETE FROM vehicule WHERE marque = 'Renault'";
+status = statement.executeUpdate(query);//nombre de lignes supprimées
+
+query = "UPDATE FROM vehicule SET marque = 'Lada' WHERE marque = 'LADA'";
+status = statement.executeUpdate(query);//nombre de lignes mises à jour</code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font big-top-margin" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;De la même manière la méthode <code>executeUpdate</code> peut lever une exception, il est donc nécessaire de la gérer.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="jdbc-prepared" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Requêtes dynamiques</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;La notion de <strong>requête dynamique</strong> permet d'exécuter des requêtes avec des paramètres aui varient à l'exécution. Il y a plusieurs manières de faire cela.
+            </div>
+          </div>
+          <div class="big-top-margin container small-font text-left">
+            <pre><code class="java">//Soient les variables marque et modele contenant 
+//des valeurs renseignée par l'utilisateur
+String query = "INSERT INTO vehicule (marque, modele) VALUES ('" + 
+  marque + "', '" + modele + "')";
+ResultSet result = statement.executeQuery(query);//OK !
+//Que se passe-t-il si modele vaut "test');DROP table vehicule;" ?
+
+//La solution ? Les Prepared Statements
+String queryPrep = "INSERT INTO vehicule (marque, modele) VALUES (?,?)";
+PreparedStatement statement = connexion.prepareStatement(queryPrep);
+statement.setString(1, marque);
+statement.setString(2, modele);
+int status = statement.executeUpdate();</code></pre></div>
+          <div class="big-top-margin container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Les <code>PreparedStatement</code> permettent de <strong>paramétrer</strong> la requête de manière plus fiable, de <strong>protéger</strong> la requête en échappant les valeurs des paramètres et d'<strong>augmenter</strong> les performances lors d'utilisations multiples grâce à la pré-compilation.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="jdbc-proscons" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Avantages/Inconvénients</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;L'utilisation de <code>JDBC</code> présentent des avantages et des inconvénients.
+            </div>
+          </div>
+          <div class="container little-top-margin small-font">
+            <ul class="list-group">
+              <li class="list-group-item list-group-item-success">Contrôle</li>
+              <li class="list-group-item list-group-item-success">Au plus prêt du SGBD</li>
+              <li class="list-group-item list-group-item-warning">Performances</li>
+              <li class="list-group-item list-group-item-danger">Récupération des résultats pas pratique</li>
+              <li class="list-group-item list-group-item-danger">Totalement dépendant du SGBD</li>
+              <li class="list-group-item list-group-item-danger">Tres verbeux</li>
+              <li class="list-group-item list-group-item-danger">Gestion manuelle des connexions fastidieuse</li>
+              <li class="list-group-item list-group-item-danger">Maintenabilité et évolutivité</li>
+            </ul>
+          </div>
+          <div class="container-fluid big-top-margin">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;On utilisera JDBC lorsqu'il y a des vrais problématiques de performances ou lorsqu'on doit faire appel à des procédures stockées par exemple. Pour les autres cas, on utilisera plutôt <code>JPA</code>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="jpahibernate" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">JPA et Hibernate</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;<code>JPA</code> pour <strong>Java Persistence API</strong> est un standard de JEE permettant notamment de faire correspondre des classes Java avec des tables de base de données (c'est ce qu'on appelle ORM pour Object-Relational Mapping). <code>Hibernate</code> est une <strong>implémentation</strong> de ce standard et s'appuie sur <code>JDBC</code> pour dialoguer avec la base de données. 
+            </div>
+          </div>
+          <div class="container small-font">
+            <img src="img/jpahibernate.png" alt="">
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Il existe d'autres implémentations de JPA (EclipseLink, OpenJPA...) mais Hibernate reste la plus utilisée. A noter que chaque framework propose des fonctionnalités supplémentaires par rapport à JPA.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="entity" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Les Entités</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Les <strong>Entités</strong> sont donc des classes Java qui seront utilisées pour <em>mapper</em> les données issues d'une table afin de pouvoir gérer plus facilement les données et tirer partie de la puissance de la POO.
+            </div>
+          </div>
+          <div class="container-fluid small-font text-left">
+            <div class="row">
+              <div class="col-sm-6"><pre><code class="java">import javax.persistence.*;
+
+@Entity
+@Table(name = "vehicule")
+public class Vehicule {
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Integer id;
+
+  @Column(name = "marque")//superflu car noms identiques
+  private String marque;
+
+  private String modele;
+
+  private String immatriculation;
+
+  @Column(name = "date_mise_circulation")
+  private Date dateMiseCirculation;
+}</code></pre></div>
+              <div class="col-sm-6 big-top-margin">
+                <img src="img/vehicule.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Nous avons maintenant un object <code>Vehicule</code> prêt à être automatiquement <em>rempli</em> avec les données issues de la table <code>vehicule</code>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="spring" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Spring</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Les Repository (ou DAO : Data Access Object) permettent de séparer l'accès aux données dans une couche spécifique et ainsi limiter les actions sur la base en exposant uniquement les méthodes nécessaires. On ne peut plus faire <em>n'importe quoi</em> comme avec JDBC. On va ajouter un framework qui va nous simplifier la vie : Spring. 
+            </div>
+          </div>
+          <div class="container small-font">
+            <ul class="list-group text-center">
+              <img src="img/spring.svg" alt="" width="650px" style="margin-left: 220px">
+            </ul>
+          </div>
+          <div class="container-fluid little-top-margin">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Nous n'allons utiliser que Spring Boot et Spring Data dans le framework Spring (ce framework devrait vous être présenté lors d'un prochain cours).
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="repository" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Les Repository</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Les <code>Repository</code> vont nous permettre d'accéder et de manipuler les données :
+            </div>
+          </div>
+          <div class="container small-font big-top-margin">
+            <ul class="list-group">
+              <li class="list-group-item">En fournissant des méthodes toute prêtes</li>
+              <li class="list-group-item">En permettant de générer des requêtes sans écrire une ligne de SQL</li>
+              <li class="list-group-item">En proposant des fonctionnalités de pagination</li>
+              <li class="list-group-item">En permettant d'écrire des requêtes en pseudo-langage SQL</li>
+              <li class="list-group-item">En permettant d'écrire des requêtes en SQL natif</li>
+            </ul>
+          </div>
+          <div class="container-fluid big-top-margin">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Pour cela, nous utiliserons les interfaces <code>CrudRepository</code> et <code>PagingAndSortingRepository</code> de <strong>Spring Data</strong>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div id="repository-crud" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3"><code>CrudRepository</code></h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Il suffit de créer une interface pour l'entité voulue (Ex : <code>MonEntiteRepository</code>) est la faire implémenter <code>CrudRepository</code>.
+            </div>
+          </div>
+          <div class="container small-font text-left">
+            <pre><code class="java">public interface CrudRepository&lt;T,I extends Serializable&gt; extends Repository&lt;T,I&gt; {
+  &lt;S extends T&gt; S save(S entity);
+  &lt;S extends T&gt; Iterable&lt;S&gt; save(Iterable&lt;S&gt; entities);
+  T findOne(I id);
+  boolean exists(I id);
+  Iterable&lt;T&gt; findAll();
+  Iterable&lt;T&gt; findAll(Iterable&lt;I&gt; ids);
+  long count();
+  void delete(I id);
+  void delete(T entity);
+  void delete(Iterable&lt;? extends T&gt; entities);
+  void deleteAll();
+}
+
+//Fichier VehiculeRepository.java
+public interface VehiculeRepository implements CrudRepository&lt;Vehicule,Integer&gt; {
+  
+}</code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Sans rien faire d'autre, les méthodes de <code>CrudRepository</code> sont définies dans le <code>VehiculeRepository</code>, il ne reste plus qu'à les appeler.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="repository-crud2" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Opérations de C(R)UD</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;On parle d'opérations CRUD pour <strong>C</strong>reate, <strong>R</strong>ead, <strong>U</strong>pdate et <strong>D</strong>elete. Nous avons vu le <code>READ</code>, voyons les autres
+            </div>
+          </div>
+          <div class="container small-font text-left">
+            <pre><code class="java">public class VehiculeService {
+  @Autowired
+  private VehiculeRepository vehiculeRepository;
+  ...
+  public void test(){
+    //Create
+    Vehicule v = vehiculeRepository.save(new Vehicule("Peugeot", "208"));
+    
+    //Read
+    Vehicule v2 = vehiculeRepository.findById(5);
+    ...
+    v.setDateMiseCirculation(new Date());
+    
+    //Update
+    v = vehiculeRepository.save();
+    ...
+    
+    //Delete
+    vehiculeRepository.delete(v);
+  }</code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;L'annotation <code>@Autowired</code> permet <em>d'injecter</em> une instance de <code>VehiculeRepository</code>. Ces instances sont gérées par Spring, on n'effectue pas de <code>new</code>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="repository-paging" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3"><code>PagingAndSortingRepository</code></h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Il suffit de créer une interface pour l'entité voulue (Ex : <code>MonEntiteRepository</code>) est la faire implémenter <code>PagingAndSortingRepository</code>.
+            </div>
+          </div>
+          <div class="container-fluid small-font text-left">
+            <pre><code class="java">public interface PagingAndSortingRepository<T, ID extends Serializable> extends CrudRepository&lt;T, ID&gt; {
+  Iterable&lt;T&gt; findAll(Sort sort);
+  Page&lt;T&gt; findAll(Pageable pageable);
+}
+//Fichier VehiculeRepository.java
+public interface VehiculeRepository implements PagingAndSortingRepository&lt;Vehicule,Integer&gt; {}
+//Classe VehiculeService
+@Autowired
+private VehiculeRepository vehiculeRepository;
+...
+public Page&lt;Vehicule&gt; findAllVehiculesPaging(Integer page, Integer size){
+  PageRequest pageRequest = new PageRequest(page, size, Sort.Direction.ASC, "immatriculation");
+  return vehiculeRepository.findAll(pageRequest);
+}
+public List&lt;Vehicule&gt; findAllVehiculesSortingDesc(String attribute){
+  return vehiculeRepository.findAll(new Sort(Sort.Direction.DESC, attribute));
+}
+//Autre classe utilisant VehiculeService
+vehiculeService.findAllVehiculesPaging(0,5).forEach(System.out::println);
+vehiculeService.findAllVehiculesSortingDesc("immatriculation").forEach(System.out::println);</code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;En plus des méthodes de <code>CrudRepository</code>, de nouvelles méthodes permettant de gérer la pagination et l'ordre sont disponibles.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="repository-generer" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Génération de requête</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Grâce à Spring Data, il va être possible d'utiliser des requêtes générées à partir de la manière de nommer la fonction.
+            </div>
+          </div>
+          <div class="container-fluid small-font text-left">
+            <pre><code class="java">public interface VehiculeRepository implements CrudRepository&lt;Vehicule,Integer&gt; {
+  //SELECT * FROM vehicule WHERE immatriculation = ?;
+  Vehicule findByImmatriculation(String immatriculation);
+  //SELECT * FROM vehicule WHERE marque = ? AND modele = ?;
+  List&lt;Vehicule&gt; findByMarqueAndModele(String marque, String modele);
+  //SELECT * FROM vehicule WHERE lower(marque) = ?;
+  List&lt;Vehicule&gt; findByMarqueIgnoreCase(String nom);
+  //Idem mais avec pagination
+  Page&lt;Vehicule&gt; findByMarqueIgnoreCase(String nom, Pageable pageable);
+  //SELECT * FROM vehicule WHERE date_mise_circulation < ?;
+  List&lt;Vehicule&gt; findByDateMiseCirculationBefore(LocalDate date);
+  //SELECT * FROM vehicule WHERE puissance > ? ORDER BY immatriculation DESC;
+  List&lt;Vehicule&gt; findByPuissanceGreaterThanOrderByImmatriculationDesc(Integer puissance);
+}</code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Pour voir toutes les possibilités offertes par le framework, voir la <a href="https://docs.spring.io/spring-data/jpa/docs/2.0.1.RELEASE/reference/html/#repositories.query-methods.query-creation" target="_blank">documentation</a>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="repository-generertout" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Mots supportés dans les noms des méthodes</h1>
+          <div class="container-fluid smaller-font text-left">
+            <table class="table nopadding">
+              <colgroup>
+                <col>
+                <col>
+                <col>
+              </colgroup>
+              <thead>
+              <tr>
+                <th class="tableblock halign-left valign-top">Mot-clé</th>
+                <th class="tableblock halign-left valign-top">Exemple</th>
+                <th class="tableblock halign-left valign-top">Equivalent JPQL</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>And</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByLastnameAndFirstname</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.lastname = ?1 and x.firstname = ?2</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>Or</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByLastnameOrFirstname</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.lastname = ?1 or x.firstname = ?2</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>Is,Equals</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByFirstname</code>,<code>findByFirstnameIs</code>,<code>findByFirstnameEquals</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.firstname = ?1</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>Between</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByStartDateBetween</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.startDate between ?1 and ?2</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>LessThan</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByAgeLessThan</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.age &lt; ?1</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>LessThanEqual</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByAgeLessThanEqual</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.age &lt;= ?1</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>GreaterThan</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByAgeGreaterThan</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.age &gt; ?1</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>GreaterThanEqual</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByAgeGreaterThanEqual</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.age &gt;= ?1</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>After</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByStartDateAfter</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.startDate &gt; ?1</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>Before</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByStartDateBefore</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.startDate &lt; ?1</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>IsNull</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByAgeIsNull</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.age is null</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>IsNotNull,NotNull</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByAge(Is)NotNull</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.age not null</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>Like</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByFirstnameLike</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.firstname like ?1</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>NotLike</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByFirstnameNotLike</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.firstname not like ?1</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>StartingWith</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByFirstnameStartingWith</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.firstname like ?1</code> (paramètre + <code>%</code>)</td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>EndingWith</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByFirstnameEndingWith</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.firstname like ?1</code> (<code>%</code> + paramètre)</td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>Containing</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByFirstnameContaining</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.firstname like ?1</code> (paramètre entre deux <code>%</code>)</td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>OrderBy</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByAgeOrderByLastnameDesc</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.age = ?1 order by x.lastname desc</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>Not</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByLastnameNot</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.lastname &lt;&gt; ?1</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>In</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByAgeIn(Collection&lt;Age&gt; ages)</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.age in ?1</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>NotIn</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByAgeNotIn(Collection&lt;Age&gt; ages)</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.age not in ?1</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>True</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByActiveTrue()</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.active = true</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>False</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByActiveFalse()</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where x.active = false</code></td>
+              </tr>
+              <tr>
+                <td class="tableblock halign-left valign-top"><code>IgnoreCase</code></td>
+                <td class="tableblock halign-left valign-top"><code>findByFirstnameIgnoreCase</code></td>
+                <td class="tableblock halign-left valign-top"><code>… where UPPER(x.firstame) = UPPER(?1)</code></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Cela permet de gérer la plupart des requêtes classiques.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="repository-jpql" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Requêtes JPQL</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Lorsque les requêtes générées ne sont pas suffisantes, il est possible de spécifier le contenu de la requête en JPQL.
+            </div>
+          </div>
+          <div class="container-fluid small-font text-left big-top-margin">
+            <pre><code class="java">public interface VehiculeRepository implements CrudRepository&lt;Vehicule,Integer&gt; {
+  
+  @Query("select v from vehicule v where length(v.immatriculation) = ? ");
+  List&lt;Vehicule&gt; findByLongueurMarque(Integer longueur);
+}</code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font big-top-margin" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;<code>JPQL</code> est un langage de requête orienté objet indépendant de la plateforme qui travaille sur les entités Java, pas sur les tables elles-mêmes.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="repository-native" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Requêtes natives</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Lorsque les requêtes sont vraiment compliquées et qu'il n'est pas possible d'utiliser les requêtes générées ou JPA, on peut écrire directement les requêtes en SQL natif.
+            </div>
+          </div>
+          <div class="container-fluid small-font text-left">
+            <pre><code class="java">public interface ProprietaireRepository implements CrudRepository&lt;Proprietaire,Integer&gt; {
+  
+  @Query("SELECT p.* FROM proprietaire p " +
+  "INNER JOIN vehicule v ON v.proprietaire_id = p.id " +
+  "WHERE v.marque = :marque1 " +
+  "AND EXISTS ( " +
+    "SELECT p2.* FROM proprietaire p2 " +
+    "INNER JOIN vehicule v2 ON v2.proprietaire_id = p2.id " +
+    "WHERE p2.id = p.id" +
+    "AND v2.marque = :marque2 " +
+  ")", nativeQuery = true);
+  List&lt;Proprietaire&gt; findByDeuxMarques(@Param("marque1") String marque1, @Param("marque2") String marque2);
+}</code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;On peut alors utiliser les fonctions spécifiques au SGBD sur lequel on travaille, ce qui n'est pas le cas pour JPQL.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="relations" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Relations</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Voici les différents types de relations qui peuvent exister entre les entités.
+            </div>
+          </div>
+          <div class="container-fluid small-font">
+            <img src="img/relations.jpg" alt="">
+          </div>
+          <div class="container-fluid little-top-margin">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Voyons comment les implémenter avec JPA.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="relations-relations11" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Relations OneToOne unidirectionnel</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Les clés étrangères définies entre deux tables peuvent être gérées côté Java avec la mise en place de relations.
+            </div>
+          </div>
+          <div class="container-fluid small-font text-left">
+            <div class="row">
+              <div class="col-sm-6"><pre><code class="java">@Entity
+public class Vehicule {
+  ...
+
+  @OneToOne
+  @JoinColumn(name = "contrat_id", nullable = false)
+  //Le nullable = false est nécessaire si la FK a été
+  //définie en NOT NULL. Sinon on peut l'enlever.
+  private ContratAssurance contrat;
+}
+
+@Entity
+public class ContratAssurance {
+  ...
+  
+}</code></pre></div>
+              <div class="col-sm-6">
+                <img src="img/onetoone.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid little-top-margin">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Dans cet exemple, il ne peut pas exister de contrat d'assurance sans véhicule. La relation est unidirectionnelle. 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="relations-relations11bi" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Relations OneToOne bidirectionnel</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Il est parfois nécessaire de pouvoir naviguer dans l'autre sens dans une relation OneToOne, on parle de relation bidirectionnelle.
+            </div>
+          </div>
+          <div class="container-fluid small-font text-left">
+            <div class="row">
+              <div class="col-sm-6"><pre><code class="java">@Entity
+public class Vehicule {
+  ...
+
+  @OneToOne
+  @JoinColumn(name = "contrat_id", nullable = false)
+  //Le nullable = false est nécessaire si la FK a été
+  //définie en NOT NULL. Sinon on peut l'enlever.
+  private ContratAssurance contrat;
+}
+
+@Entity
+public class ContratAssurance {
+  ...
+  @OneToOne( mappedBy = "contrat" )
+  private Vehicule vehicule;
+}</code></pre></div>
+              <div class="col-sm-6">
+                <img src="img/onetoonebi.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid little-top-margin">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;A noter qu'il n'y a aucune différence côté SQL. La définition de la table reste la même.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="relations-relations1n" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Relations OneToMany unidirectionnel</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Une autre possibilité est la relation OneToMany (ou ManyToOne) symbolisant une composition ou une agrégation.
+            </div>
+          </div>
+          <div class="container-fluid small-font text-left">
+            <div class="row">
+              <div class="col-sm-6"><pre><code class="java">@Entity
+public class Vehicule {
+  ...
+
+  @OneToMany
+  @JoinColumn( name = "vehicule_id")
+  private List&lt;Entretien&gt; entretiens;
+}
+
+@Entity
+public class Entretien {
+  ...
+}</code></pre></div>
+              <div class="col-sm-6">
+                <img src="img/onetomany.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid little-top-margin">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Ici, un entretien est forcément rattaché à un véhicule mais l'inverse n'est pas vrai. La relation est unidirectionnelle, on ne peut pas retrouver le véhicule à partir de l'entretien.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="relations-relations1nbi" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Relations OneToMany bidirectionnel</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;On peut compléter le mapping pour faire en sorte que la relation soit birectionnelle.
+            </div>
+          </div>
+          <div class="container-fluid small-font text-left">
+            <div class="row">
+              <div class="col-sm-6"><pre><code class="java">@Entity
+public class Vehicule {
+  ...
+
+  @OneToMany( mappedBy = "vehicule" )
+  private List&lt;Entretien&gt; entretiens;
+}
+
+@Entity
+public class Entretien {
+  ...
+
+  @ManyToOne
+  @JoinColumn( name = "vehicule_id" )
+  private Vehicule vehicule;
+}</code></pre></div>
+              <div class="col-sm-6">
+                <img src="img/onetomanybi.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid little-top-margin">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;On peut accéder au véhicule directement à partir de l'entretien. A noter qu'aucune modification au niveau SQL n'a été effectuée par rapport à l'exemple précédent.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="relations-relationsnn" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Relations ManyToMany</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Pour modéliser une relation ou les cardinalités entre deux classes sont N et N, on utilise ManyToMany.
+            </div>
+          </div>
+          <div class="container-fluid small-font text-left">
+            <div class="row">
+              <div class="col-sm-6"><pre><code class="java">@Entity
+public class Vehicule {
+  ...
+  @ManyToMany(mappedBy = "vehicules")
+  private List&lt;Proprietaire&gt; proprietaires;
+}
+
+@Entity
+public class Proprietaire {
+  ...
+  @ManyToMany
+  @JoinTable(name = "Vehicules_Proprietaires",
+    joinColumns = @JoinColumn(name = "proprietaire_id"), 
+    inverseJoinColumns = @JoinColumn(name = "vehicule_id")
+  )
+  private List&lt;Vehicule&gt; vehicules;
+}</code></pre></div>
+              <div class="col-sm-6">
+                <img src="img/manytomany.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid little-top-margin">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Une table d'association doit exister pour représenter une relation ManyToMany. Cette table n'est pas modélisée directement à l'aide d'une classe Java mais bien dans l'annotation ManyToMany.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="heritage" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Héritage</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Il est nécessaire de paramétrer correctement les entités afin de tirer parti au maximum des fonctionnalités de l'héritage.
+            </div>
+          </div>
+          <div class="container small-font text-left">
+            <ul class="list-group">
+              <li class="list-group-item"><em>Mapped superclass</em></li>
+              <li class="list-group-item"><em>Table per class</em></li>
+              <li class="list-group-item"><em>Single table</em></li>
+              <li class="list-group-item"><em>Joined</em></li>
+            </ul>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Voyons ce qu'implique le choix de telle ou telle stratégie.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="heritage-mapped" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Mapped Superclass</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;La <em>mapped superclass</em> stratégie est l'approche la plus simple. Cela map chaque classe concrète avec sa propre table.
+            </div>
+          </div>
+          <div class="container-fluid small-font text-left">
+            <div class="row">
+              <div class="col-sm-6"><pre><code class="java">@MappedSuperclass
+public abstract class Publication {
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  protected Long id;
+  protected String title;
+  private int version;
+  private Date publishingDate;
+}
+
+@Entity
+public class Book extends Publication {
+  private int pages;
+}
+
+@Entity
+public class BlogPost extends Publication {
+  private String url;
+}</code></pre></div>
+              <div class="col-sm-6">
+                <img src="img/mappedSuperClass.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Le gros inconvénient est que la superclasse n'est pas une entité, il n'est donc pas possible de profiter du polymorphisme.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="heritage-tableperclass" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Table Per Class</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;La stratégie <em>Table Per Class</em> est similaire à la stratégie précédente si ce n'est que la super-classe est maintenant une entité.
+            </div>
+          </div>
+          <div class="container-fluid small-font text-left">
+            <div class="row">
+              <div class="col-sm-6"><pre><code class="java">@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Publication {
+  @Id @GeneratedValue(strategy = GenerationType.AUTO)
+  protected Long id;
+  protected String title;
+  private int version;
+  @ManyToMany @JoinTable(name = "PublicationAuthor"...)
+  private Set authors = new HashSet();
+  private Date publishingDate;
+}
+@Entity
+public class Book extends Publication {
+  private int pages;
+}
+@Entity
+public class BlogPost extends Publication {
+  private String url;
+}</code></pre></div>
+              <div class="big-top-margin col-sm-6">
+                <img src="img/tablePerClass.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Ici, il est possible de requêter les publications de manière globales et de définir des relations avec <code>Publication</code>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="heritage-single" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Single Table</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;La stratégie <em>Single Table</em> map l'ensemble des entités dans une seule table ce qui est très performant mais pas sans inconvénients.
+            </div>
+          </div>
+          <div class="container-fluid small-font text-left">
+            <div class="row">
+              <div class="col-sm-6"><pre><code class="java">@Entity @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "Publication_Type")
+public abstract class Publication {
+  @Id @GeneratedValue(strategy = GenerationType.AUTO)
+  protected Long id;
+  protected String title;
+  private int version;
+  @ManyToMany @JoinTable(name = "PublicationAuthor"...)
+  private Set authors = new HashSet();
+  private Date publishingDate;
+}
+@Entity @DiscriminatorValue("Book")
+public class Book extends Publication {
+  private int pages;
+}
+@Entity @DiscriminatorValue("Blog")
+public class BlogPost extends Publication {
+  private String url;
+}</code></pre></div>
+              <div class="big-top-margin col-sm-6">
+                <div class="big-top-margin">
+                  <img class="big-top-margin" src="img/singleTable.png" alt="" style="margin-left: -150px;">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Il est ainsi impossible de gérer de contraintes de non nullité sur un attribut en particulier.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="heritage-single" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Joined</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;La stratégie <em>Joined</em> map ressemble à la stratégie <em>Table per class</em> mais la superclasse abstraite possède sa propre table.
+            </div>
+          </div>
+          <div class="container-fluid small-font text-left">
+            <div class="row">
+              <div class="col-sm-6"><pre><code class="java">@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Publication {
+  @Id @GeneratedValue(strategy = GenerationType.AUTO)
+  protected Long id;
+  protected String title;
+  private int version;
+  @ManyToMany
+  @JoinTable(name = "PublicationAuthor"...)
+  private Set authors = new HashSet();
+  private Date publishingDate;
+}
+@Entity
+public class Book extends Publication {
+  private int pages;
+}
+@Entity
+public class BlogPost extends Publication {
+  private String url;
+}</code></pre></div>
+              <div class="big-top-margin col-sm-6">
+                <div class="big-top-margin">
+                  <img class="big-top-margin" src="img/joinedTable.png" alt="" style="margin-left: -175px;">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Les tables sont plus petites car elles ne contiennent que les colonnes spécifiques et une clé primaire commune à la super-classe.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script src="js/impress.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/highlight.min.js"></script>
+<script src="js/jquery.mousewheel.min.js"></script>
+<script src="js/script.js"></script>
+

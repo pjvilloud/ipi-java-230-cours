@@ -1,0 +1,318 @@
+.img-bienvenue {
+    max-height: 30vh;
+}
+
+
+@media only screen and (min-width: 992px) and (max-width: 1281px) {
+   nav.navbar {
+    padding: 0 5px 0 5px;
+   } 
+
+   .big-top-margin{
+        margin-top: 30px;
+    }
+
+    .little-top-margin{
+        margin-top: 10px;
+    }
+
+    .container-fluid {
+        padding: 0;
+    }
+
+    .step {
+        width: 100vw;
+        padding: 5px;
+    }
+
+    h1 {
+        margin-bottom: 15px;
+    }
+}
+
+
+ul.no-border, ul.no-border > li {
+    border: none;
+}
+
+ul.no-border > li {
+    height:60px;
+}
+
+@media only screen and (min-width: 1282px) {
+   .big-top-margin{
+        margin-top: 100px;
+    }
+
+    .little-top-margin{
+        margin-top: 30px;
+    }
+
+    .step {
+        width: 97vw;
+        padding: 20px;
+    }
+
+    h1 {
+        margin-bottom: 30px;
+    }
+}
+
+.no-bottom-margin {
+    margin-bottom: 0;
+}
+
+.ml-auto.alert-success {
+    margin-bottom: -30px;
+}
+.jumbotron {
+    background-color: transparent;
+}
+
+.large-popover.popover {
+    width: 40vW;
+    max-width: 40vw;
+}
+
+.java.no-padding {
+    padding: 2.5px;
+}
+
+.medium-popover.popover {
+    width: 20vW;
+    max-width: 20vw;
+}
+.progress, .progress-bar {
+    height: 5px;
+    line-height: 5px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+table.smaller-font pre {
+    margin-bottom: 0px;
+}
+
+.small-padding li{
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.small-font {
+    font-size: 1.5rem;
+}
+.less-small-font {
+    font-size: 1.2rem;
+}
+
+.smaller-font {
+    font-size: 1rem;
+}
+
+/* Style Impress JS */
+.step {
+    position: relative;
+    margin-top:30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+    -ms-box-sizing:     border-box;
+    -o-box-sizing:      border-box;
+    box-sizing:         border-box;
+
+    font-size: 2.5rem;
+    line-height: 1.5;
+}
+
+.step .jumbotron {
+    height: 100%;
+}
+
+
+.navbar {
+    z-index: 99999;
+}
+
+.dropdown-menu {
+    z-index:999999;
+}
+
+div.progress, div.progress-bar {
+    z-index:99998;
+}
+
+.nav-item .dropdown-menu {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body {
+    /*background: rgb(215, 215, 215);
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
+    background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:    -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:     -ms-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:      -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:         radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));*/
+}
+
+/*
+    Because the main point behind the impress.js demo is to demo impress.js
+    we display a fallback message for users with browsers that don't support
+    all the features required by it.
+
+    All of the content will be still fully accessible for them, but I want
+    them to know that they are missing something - that's what the demo is
+    about, isn't it?
+
+    And then we hide the message, when support is detected in the browser.
+*/
+
+.fallback-message {
+    font-family: sans-serif;
+    line-height: 1.3;
+
+    width: 780px;
+    padding: 10px 10px 0;
+    margin: 20px auto;
+
+    border: 1px solid #E4C652;
+    border-radius: 10px;
+    background: #EEDC94;
+}
+
+.fallback-message p {
+    margin-bottom: 10px;
+}
+
+.impress-supported .fallback-message {
+    display: none;
+}
+
+.hint {
+    display: none;
+
+    /*
+        ... and give it some fixed position and nice styles.
+    */
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 200px;
+
+    background: rgba(0,0,0,0.5);
+    color: #EEE;
+    text-align: center;
+
+    font-size: 50px;
+    padding: 20px;
+
+    z-index: 100;
+
+    /*
+        By default we don't want the hint to be visible, so we make it transparent ...
+    */
+    opacity: 0;
+
+    /*
+        ... and position it below the bottom of the screen (relative to it's fixed position)
+    */
+    -webkit-transform: translateY(400px);
+    -moz-transform:    translateY(400px);
+    -ms-transform:     translateY(400px);
+    -o-transform:      translateY(400px);
+    transform:         translateY(400px);
+
+    /*
+        Now let's imagine that the hint is visible and we want to fade it out and move out
+        of the screen.
+
+        So we define the transition on the opacity property with 1s duration and another
+        transition on transform property delayed by 1s so it will happen after the fade out
+        on opacity finished.
+
+        This way user will not see the hint moving down.
+    */
+    -webkit-transition: opacity 1s, -webkit-transform 0.5s 1s;
+    -moz-transition:    opacity 1s,    -moz-transform 0.5s 1s;
+    -ms-transition:     opacity 1s,     -ms-transform 0.5s 1s;
+    -o-transition:      opacity 1s,      -o-transform 0.5s 1s;
+    transition:         opacity 1s,         transform 0.5s 1s;
+}
+
+/*
+    Now we 'enable' the hint when presentation is initialized ...
+*/
+.impress-enabled .hint { display: block }
+
+/*
+    ... and we will show it when the first step (with id 'bored') is active.
+*/
+.impress-on-bored .hint {
+    /*
+        We remove the transparency and position the hint in its default fixed
+        position.
+    */
+    opacity: 1;
+
+    -webkit-transform: translateY(0px);
+    -moz-transform:    translateY(0px);
+    -ms-transform:     translateY(0px);
+    -o-transform:      translateY(0px);
+    transform:         translateY(0px);
+
+    /*
+        Now for fade in transition we have the oposite situation from the one
+        above.
+
+        First after 4.5s delay we animate the transform property to move the hint
+        into its correct position and after that we fade it in with opacity
+        transition.
+    */
+    -webkit-transition: opacity 1s 5s, -webkit-transform 0.5s 4.5s;
+    -moz-transition:    opacity 1s 5s,    -moz-transform 0.5s 4.5s;
+    -ms-transition:     opacity 1s 5s,     -ms-transform 0.5s 4.5s;
+    -o-transition:      opacity 1s 5s,      -o-transform 0.5s 4.5s;
+    transition:         opacity 1s 5s,         transform 0.5s 4.5s;
+}
+
+
+
+
+.dropdown-submenu { position: relative }
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.dropdown-submenu:hover>.dropdown-menu { display: block }
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after { border-left-color: #ccc }
+.dropdown-submenu.pull-left { float: none }
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.table.nopadding td {
+    padding:0;
+}
