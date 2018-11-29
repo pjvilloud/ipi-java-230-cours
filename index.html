@@ -148,13 +148,14 @@ String user = "root"; String pwd = "root";
 java.sql.Connection connexion = null;
 try {
     connexion = java.sql.DriverManager.getConnection(url, user, pwd);
+    //L'object connexion va nous permettre d'effectuer des requêtes...
+    ...
 } catch ( java.sql.SQLException e ) {
     //Problème de connexion à la base !
 }
-//L'object connexion va nous permettre d'effectuer des requêtes...
-...
+
 //Lorsqu'on a fini de l'utiliser : 
-if(connexion != null {
+if(connexion != null) {
   try {
     connexion.close();
   }
@@ -247,23 +248,23 @@ status = statement.executeUpdate(query);//nombre de lignes mises à jour</code><
           <h1 class="display-3">Requêtes dynamiques</h1>
           <div class="container-fluid">
             <div class="alert alert-primary small-font" role="alert">
-                <i class="fa fa-icon fa-info-circle"></i>&nbsp;La notion de <strong>requête dynamique</strong> permet d'exécuter des requêtes avec des paramètres aui varient à l'exécution. Il y a plusieurs manières de faire cela.
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;La notion de <strong>requête dynamique</strong> permet d'exécuter des requêtes avec des paramètres qui varient à l'exécution. Il y a plusieurs manières de faire cela.
             </div>
           </div>
           <div class="big-top-margin container small-font text-left">
             <pre><code class="java">//Soient les variables marque et modele contenant 
 //des valeurs renseignée par l'utilisateur
-String query = "INSERT INTO vehicule (marque, modele) VALUES ('" + 
-  marque + "', '" + modele + "')";
-ResultSet result = statement.executeQuery(query);//OK !
-//Que se passe-t-il si modele vaut "test');DROP table vehicule;" ?
+String query = "SELECT * FROM vehicule WHERE marque = '" + 
+  marque + "')";
+statement.executeQuery(query);//OK !
+//Que se passe-t-il si modele vaut "test' OR '1' = '1" ?
 
 //La solution ? Les Prepared Statements
-String queryPrep = "INSERT INTO vehicule (marque, modele) VALUES (?,?)";
+String queryPrep = "SELECT * FROM vehicule WHERE marque = ? AND modele = ?)";
 PreparedStatement statement = connexion.prepareStatement(queryPrep);
 statement.setString(1, marque);
 statement.setString(2, modele);
-int status = statement.executeUpdate();</code></pre></div>
+int status = statement.executeQuery();</code></pre></div>
           <div class="big-top-margin container-fluid">
             <div class="alert alert-primary small-font " role="alert">
                 <i class="fa fa-icon fa-info-circle"></i>&nbsp;Les <code>PreparedStatement</code> permettent de <strong>paramétrer</strong> la requête de manière plus fiable, de <strong>protéger</strong> la requête en échappant les valeurs des paramètres et d'<strong>augmenter</strong> les performances lors d'utilisations multiples grâce à la pré-compilation.
@@ -444,7 +445,7 @@ public class Vehicule {
 }
 
 //Fichier VehiculeRepository.java
-public interface VehiculeRepository implements CrudRepository&lt;Vehicule,Integer&gt; {
+public interface VehiculeRepository extends CrudRepository&lt;Vehicule,Integer&gt; {
   
 }</code></pre>
           </div>
@@ -467,7 +468,8 @@ public interface VehiculeRepository implements CrudRepository&lt;Vehicule,Intege
             </div>
           </div>
           <div class="container small-font text-left">
-            <pre><code class="java">public class VehiculeService {
+            <pre><code class="java">@Service
+public class VehiculeService {
   @Autowired
   private VehiculeRepository vehiculeRepository;
   ...
@@ -476,16 +478,16 @@ public interface VehiculeRepository implements CrudRepository&lt;Vehicule,Intege
     Vehicule v = vehiculeRepository.save(new Vehicule("Peugeot", "208"));
     
     //Read
-    Vehicule v2 = vehiculeRepository.findById(5);
+    Vehicule v2 = vehiculeRepository.findOne(5);
     ...
-    v.setDateMiseCirculation(new Date());
+    v2.setDateMiseCirculation(new Date());
     
     //Update
-    v = vehiculeRepository.save();
+    v2 = vehiculeRepository.save(v2);
     ...
     
     //Delete
-    vehiculeRepository.delete(v);
+    vehiculeRepository.delete(v2);
   }</code></pre>
           </div>
           <div class="container-fluid">
@@ -512,7 +514,7 @@ public interface VehiculeRepository implements CrudRepository&lt;Vehicule,Intege
   Page&lt;T&gt; findAll(Pageable pageable);
 }
 //Fichier VehiculeRepository.java
-public interface VehiculeRepository implements PagingAndSortingRepository&lt;Vehicule,Integer&gt; {}
+public interface VehiculeRepository extends PagingAndSortingRepository&lt;Vehicule,Integer&gt; {}
 //Classe VehiculeService
 @Autowired
 private VehiculeRepository vehiculeRepository;
@@ -547,7 +549,7 @@ vehiculeService.findAllVehiculesSortingDesc("immatriculation").forEach(System.ou
             </div>
           </div>
           <div class="container-fluid small-font text-left">
-            <pre><code class="java">public interface VehiculeRepository implements CrudRepository&lt;Vehicule,Integer&gt; {
+            <pre><code class="java">public interface VehiculeRepository extends CrudRepository&lt;Vehicule,Integer&gt; {
   //SELECT * FROM vehicule WHERE immatriculation = ?;
   Vehicule findByImmatriculation(String immatriculation);
   //SELECT * FROM vehicule WHERE marque = ? AND modele = ?;
@@ -732,9 +734,9 @@ vehiculeService.findAllVehiculesSortingDesc("immatriculation").forEach(System.ou
             </div>
           </div>
           <div class="container-fluid small-font text-left big-top-margin">
-            <pre><code class="java">public interface VehiculeRepository implements CrudRepository&lt;Vehicule,Integer&gt; {
+            <pre><code class="java">public interface VehiculeRepository extends CrudRepository&lt;Vehicule,Integer&gt; {
   
-  @Query("select v from vehicule v where length(v.immatriculation) = ? ");
+  @Query("select v from Vehicule v where length(v.marque) = ? ");
   List&lt;Vehicule&gt; findByLongueurMarque(Integer longueur);
 }</code></pre>
           </div>
@@ -757,7 +759,7 @@ vehiculeService.findAllVehiculesSortingDesc("immatriculation").forEach(System.ou
             </div>
           </div>
           <div class="container-fluid small-font text-left">
-            <pre><code class="java">public interface ProprietaireRepository implements CrudRepository&lt;Proprietaire,Integer&gt; {
+            <pre><code class="java">public interface ProprietaireRepository extends CrudRepository&lt;Proprietaire,Integer&gt; {
   
   @Query("SELECT p.* FROM proprietaire p " +
   "INNER JOIN vehicule v ON v.proprietaire_id = p.id " +
@@ -1165,7 +1167,7 @@ public class BlogPost extends Publication {
       </div>
     </div>
 
-    <div id="heritage-single" class="step slide">
+    <div id="heritage-joined" class="step slide">
       <div class="jumbotron jumbotron-fluid">
         <div class="container-fluid text-center">
           <h1 class="display-3">Joined</h1>
