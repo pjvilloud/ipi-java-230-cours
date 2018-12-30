@@ -194,11 +194,11 @@ ResultSet resultSet = statement.executeQuery(query);
 //précisant s'il y a une ligne suivante dans nos résultats et récupère ce 
 //résultat le cas échéant (au début, son curseur est situé avant le premier élément).
 while(resultSet.next()){
-  System.out.println("Identifiant : " + resultSet.getInt("id");
-  System.out.println("Marque : " + resultSet.getString("marque");
-  System.out.println("Modèle : " + resultSet.getString(3);
-  System.out.println("Date MC : " + resultSet.getDate("date_mise_circulation");
-  System.out.println("? : " + resultSet.getBoolean("inconnu");//SQLException
+  System.out.println("Identifiant : " + resultSet.getInt("id"));
+  System.out.println("Marque : " + resultSet.getString("marque"));
+  System.out.println("Modèle : " + resultSet.getString(3));
+  System.out.println("Date MC : " + resultSet.getDate("date_mise_circulation"));
+  System.out.println("? : " + resultSet.getBoolean("inconnu"));//SQLException
 }
 
 </code></pre>
@@ -264,7 +264,7 @@ String queryPrep = "SELECT * FROM vehicule WHERE marque = ? AND modele = ?)";
 PreparedStatement statement = connexion.prepareStatement(queryPrep);
 statement.setString(1, marque);
 statement.setString(2, modele);
-int status = statement.executeQuery();</code></pre></div>
+statement.executeQuery();</code></pre></div>
           <div class="big-top-margin container-fluid">
             <div class="alert alert-primary small-font " role="alert">
                 <i class="fa fa-icon fa-info-circle"></i>&nbsp;Les <code>PreparedStatement</code> permettent de <strong>paramétrer</strong> la requête de manière plus fiable, de <strong>protéger</strong> la requête en échappant les valeurs des paramètres et d'<strong>augmenter</strong> les performances lors d'utilisations multiples grâce à la pré-compilation.
