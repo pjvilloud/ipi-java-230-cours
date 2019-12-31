@@ -342,7 +342,7 @@ statement.executeQuery();</code></pre></div>
 @Table(name = "vehicule")
 public class Vehicule {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   @Column(name = "marque")//superflu car noms identiques
@@ -433,14 +433,14 @@ public class Vehicule {
             <pre><code class="java">public interface CrudRepository&lt;T,I extends Serializable&gt; extends Repository&lt;T,I&gt; {
   &lt;S extends T&gt; S save(S entity);
   &lt;S extends T&gt; Iterable&lt;S&gt; save(Iterable&lt;S&gt; entities);
-  T findOne(I id);
-  boolean exists(I id);
+  Optional&lt;T&gt; findById(I id);
+  boolean existsById(I id);
   Iterable&lt;T&gt; findAll();
-  Iterable&lt;T&gt; findAll(Iterable&lt;I&gt; ids);
+  Iterable&lt;T&gt; findAllById(Iterable&lt;I&gt; ids);
   long count();
   void delete(I id);
-  void delete(T entity);
-  void delete(Iterable&lt;? extends T&gt; entities);
+  void deleteById(T entity);
+  void deleteAll(Iterable&lt;? extends T&gt; entities);
   void deleteAll();
 }
 
@@ -478,7 +478,7 @@ public class VehiculeService {
     Vehicule v = vehiculeRepository.save(new Vehicule("Peugeot", "208"));
     
     //Read
-    Vehicule v2 = vehiculeRepository.findOne(5);
+    Vehicule v2 = vehiculeRepository.findById(5).get();
     ...
     v2.setDateMiseCirculation(new Date());
     
@@ -736,7 +736,7 @@ vehiculeService.findAllVehiculesSortingDesc("immatriculation").forEach(System.ou
           <div class="container-fluid small-font text-left big-top-margin">
             <pre><code class="java">public interface VehiculeRepository extends CrudRepository&lt;Vehicule,Integer&gt; {
   
-  @Query("select v from Vehicule v where length(v.marque) = ? ");
+  @Query("select v from Vehicule v where length(v.marque) = ? ")
   List&lt;Vehicule&gt; findByLongueurMarque(Integer longueur);
 }</code></pre>
           </div>
@@ -769,7 +769,7 @@ vehiculeService.findAllVehiculesSortingDesc("immatriculation").forEach(System.ou
     "INNER JOIN vehicule v2 ON v2.proprietaire_id = p2.id " +
     "WHERE p2.id = p.id" +
     "AND v2.marque = :marque2 " +
-  ")", nativeQuery = true);
+  ")", nativeQuery = true)
   List&lt;Proprietaire&gt; findByDeuxMarques(@Param("marque1") String marque1, @Param("marque2") String marque2);
 }</code></pre>
           </div>
@@ -1047,7 +1047,7 @@ public class Proprietaire {
               <div class="col-sm-6"><pre><code class="java">@MappedSuperclass
 public abstract class Publication {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   protected Long id;
   protected String title;
   private int version;
@@ -1091,7 +1091,7 @@ public class BlogPost extends Publication {
               <div class="col-sm-6"><pre><code class="java">@Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Publication {
-  @Id @GeneratedValue(strategy = GenerationType.AUTO)
+  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
   protected Long id;
   protected String title;
   private int version;
@@ -1135,7 +1135,7 @@ public class BlogPost extends Publication {
               <div class="col-sm-6"><pre><code class="java">@Entity @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "Publication_Type")
 public abstract class Publication {
-  @Id @GeneratedValue(strategy = GenerationType.AUTO)
+  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
   protected Long id;
   protected String title;
   private int version;
@@ -1181,7 +1181,7 @@ public class BlogPost extends Publication {
               <div class="col-sm-6"><pre><code class="java">@Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Publication {
-  @Id @GeneratedValue(strategy = GenerationType.AUTO)
+  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
   protected Long id;
   protected String title;
   private int version;
