@@ -761,7 +761,7 @@ vehiculeService.findAllVehiculesSortingDesc("immatriculation").forEach(System.ou
           <div class="container-fluid small-font text-left">
             <pre><code class="java">public interface ProprietaireRepository extends CrudRepository&lt;Proprietaire,Integer&gt; {
   
-  @Query("SELECT p.* FROM proprietaire p " +
+  @Query(value = "SELECT p.* FROM proprietaire p " +
   "INNER JOIN vehicule v ON v.proprietaire_id = p.id " +
   "WHERE v.marque = :marque1 " +
   "AND EXISTS ( " +
