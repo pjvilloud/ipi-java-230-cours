@@ -520,11 +520,11 @@ public interface VehiculeRepository extends PagingAndSortingRepository&lt;Vehicu
 private VehiculeRepository vehiculeRepository;
 ...
 public Page&lt;Vehicule&gt; findAllVehiculesPaging(Integer page, Integer size){
-  PageRequest pageRequest = new PageRequest(page, size, Sort.Direction.ASC, "immatriculation");
+  PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "immatriculation");
   return vehiculeRepository.findAll(pageRequest);
 }
 public List&lt;Vehicule&gt; findAllVehiculesSortingDesc(String attribute){
-  return vehiculeRepository.findAll(new Sort(Sort.Direction.DESC, attribute));
+  return vehiculeRepository.findAll(Sort.by(Sort.Direction.DESC, attribute));
 }
 //Autre classe utilisant VehiculeService
 vehiculeService.findAllVehiculesPaging(0,5).forEach(System.out::println);
