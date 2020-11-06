@@ -438,8 +438,8 @@ public class Vehicule {
   Iterable&lt;T&gt; findAll();
   Iterable&lt;T&gt; findAllById(Iterable&lt;I&gt; ids);
   long count();
-  void delete(I id);
-  void deleteById(T entity);
+  void deleteById(I id);
+  void delete(T entity);
   void deleteAll(Iterable&lt;? extends T&gt; entities);
   void deleteAll();
 }
