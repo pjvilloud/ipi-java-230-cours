@@ -412,7 +412,7 @@ public class Vehicule {
           </div>
           <div class="container-fluid big-top-margin">
             <div class="alert alert-primary small-font " role="alert">
-                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Pour cela, nous utiliserons les interfaces <code>CrudRepository</code> et <code>PagingAndSortingRepository</code> de <strong>Spring Data</strong>.
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Pour cela, nous utiliserons l'interface <code>JpaRepository</code> de <strong>Spring Data</strong>.
             </div>
           </div>
         </div>
@@ -423,35 +423,34 @@ public class Vehicule {
     <div id="repository-crud" class="step slide">
       <div class="jumbotron jumbotron-fluid">
         <div class="container-fluid text-center">
-          <h1 class="display-3"><code>CrudRepository</code></h1>
+          <h1 class="display-3"><code>JpaRepository</code></h1>
           <div class="container-fluid">
             <div class="alert alert-primary small-font" role="alert">
-                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Il suffit de créer une interface pour l'entité voulue (Ex : <code>MonEntiteRepository</code>) est la faire implémenter <code>CrudRepository</code>.
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Il suffit de créer une interface pour l'entité voulue (Ex : <code>MonEntiteRepository</code>) est la faire implémenter <code>JpaRepository</code>.
             </div>
           </div>
           <div class="container small-font text-left">
-            <pre><code class="java">public interface CrudRepository&lt;T,I extends Serializable&gt; extends Repository&lt;T,I&gt; {
+            <pre><code class="java">public interface JpaRepository&lt;T, ID&gt; extends PagingAndSortingRepository&lt;T, ID&gt; {
   &lt;S extends T&gt; S save(S entity);
-  &lt;S extends T&gt; Iterable&lt;S&gt; save(Iterable&lt;S&gt; entities);
-  Optional&lt;T&gt; findById(I id);
-  boolean existsById(I id);
-  Iterable&lt;T&gt; findAll();
-  Iterable&lt;T&gt; findAllById(Iterable&lt;I&gt; ids);
+  &lt;S extends T&gt; List&lt;S&gt; saveAll(Iterable&lt;S&gt; var1);
+  Optional&lt;T&gt; findById(ID id);
+  T getOne(ID var1);
+  List&lt;T&gt; findAllById(Iterable&lt;ID&gt; var1);
+  List&lt;T&gt; findAll();
+  boolean existsById(ID id);
   long count();
-  void deleteById(I id);
+  void deleteById(ID id);
   void delete(T entity);
   void deleteAll(Iterable&lt;? extends T&gt; entities);
   void deleteAll();
+  //...
 }
-
 //Fichier VehiculeRepository.java
-public interface VehiculeRepository extends CrudRepository&lt;Vehicule,Integer&gt; {
-  
-}</code></pre>
+public interface VehiculeRepository extends JpaRepository&lt;Vehicule,Integer&gt; {}</code></pre>
           </div>
           <div class="container-fluid">
             <div class="alert alert-primary small-font " role="alert">
-                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Sans rien faire d'autre, les méthodes de <code>CrudRepository</code> sont définies dans le <code>VehiculeRepository</code>, il ne reste plus qu'à les appeler.
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Sans rien faire d'autre, les méthodes de <code>JpaRepository</code> sont définies dans le <code>VehiculeRepository</code>, il ne reste plus qu'à les appeler.
             </div>
           </div>
         </div>
@@ -502,19 +501,19 @@ public class VehiculeService {
     <div id="repository-paging" class="step slide">
       <div class="jumbotron jumbotron-fluid">
         <div class="container-fluid text-center">
-          <h1 class="display-3"><code>PagingAndSortingRepository</code></h1>
+          <h1 class="display-3"><code>Pagination et tri</code></h1>
           <div class="container-fluid">
             <div class="alert alert-primary small-font" role="alert">
-                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Il suffit de créer une interface pour l'entité voulue (Ex : <code>MonEntiteRepository</code>) est la faire implémenter <code>PagingAndSortingRepository</code>.
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;<code>JpaRepository</code> hérite de <code>PagingAndSortingRepository</code> qui permet d'utiliser des fonctionnalités de pagination et de tri.
             </div>
           </div>
           <div class="container-fluid small-font text-left">
-            <pre><code class="java">public interface PagingAndSortingRepository<T, ID extends Serializable> extends CrudRepository&lt;T, ID&gt; {
+            <pre><code class="java">public interface PagingAndSortingRepository&lt;T, ID extends Serializable&gt; extends CrudRepository&lt;T, ID&gt; {
   Iterable&lt;T&gt; findAll(Sort sort);
   Page&lt;T&gt; findAll(Pageable pageable);
 }
 //Fichier VehiculeRepository.java
-public interface VehiculeRepository extends PagingAndSortingRepository&lt;Vehicule,Integer&gt; {}
+public interface VehiculeRepository extends JpaRepository&lt;Vehicule,Integer&gt; {}
 //Classe VehiculeService
 @Autowired
 private VehiculeRepository vehiculeRepository;
@@ -532,7 +531,7 @@ vehiculeService.findAllVehiculesSortingDesc("immatriculation").forEach(System.ou
           </div>
           <div class="container-fluid">
             <div class="alert alert-primary small-font " role="alert">
-                <i class="fa fa-icon fa-info-circle"></i>&nbsp;En plus des méthodes de <code>CrudRepository</code>, de nouvelles méthodes permettant de gérer la pagination et l'ordre sont disponibles.
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;En plus des méthodes classiques, de nouvelles méthodes permettant de gérer la pagination et l'ordre sont disponibles.
             </div>
           </div>
         </div>
